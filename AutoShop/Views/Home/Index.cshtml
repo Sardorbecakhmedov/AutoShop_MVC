@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Car>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row mt-5 mb-2">
+
+    @foreach (var car in Model)
+    {
+        @await Html.PartialAsync("AllCars", car)
+    }
+
+</div>

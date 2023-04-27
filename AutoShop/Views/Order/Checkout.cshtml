@@ -1,0 +1,107 @@
+﻿@model Order
+
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 50px auto;
+        max-width: 500px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+    }
+
+    .div1 {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    label {
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+        outline: none;
+        border: 1px solid #444;
+    }
+
+    .error {
+        display: none;
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    input:invalid + .error,
+    textarea:invalid + .error {
+        display: block;
+    }
+
+    button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #00ff00;
+    }
+
+</style>
+
+@{
+    ViewData["Title"] = "Checkout Page";
+    Layout = "_Layout";
+}
+
+<form asp-controller="Order" asp-action="Completed"  method="post">
+    <div class="div1">
+        <label asp-for="Name">Firstname:</label>
+        <input asp-for="Name" placeholder="Enter your firstname" type="text"name="Name" required>
+        <span asp-validation-for="Name" class="error">Please enter your name</span>
+    </div>
+    <div class="div1">
+        <label asp-for="LastName" >Lastname:</label>
+        <input asp-for="LastName" placeholder="Enter your lastname" type="text" name="LastName" required>
+        <span asp-validation-for="LastName" class="error">Please enter your lastname</span>
+    </div>
+    <div class="div1">
+        <label asp-for="Phone" >Phone:</label>
+        <input asp-for="Phone" placeholder="Enter your phone"  type="tel" name="Phone" required>
+        <span asp-validation-for="Name" class="error">Please enter your phone number</span>
+    </div>
+    <div class="div1">
+        <label asp-for="Address">Address:</label>
+        <textarea asp-for="Address" placeholder="Enter your address" type="text" name="Address" rows="4" cols="50" required></textarea>
+        <span asp-validation-for="Address" class="error">Please enter your address</span>
+    </div>
+    <div class="div1">
+        <label asp-for="Email">Email:</label>
+        <input asp-for="Email" placeholder="Enter your email" type="email"  name="Email" required>
+        <span asp-validation-for="Email" class="error">Please enter a valid email address</span>
+    </div>
+    <button type="submit">Checkout</button>
+</form>
